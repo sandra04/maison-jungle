@@ -1,0 +1,62 @@
+.lmj-main-content {
+	width: calc(100% - 264px);
+}
+
+.lmj-plant-list {
+	list-style-type: none;
+	padding: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+.lmj-plant-list > div {
+	text-align:center;
+	margin:30px 0;
+	width:100%;
+}
+
+.lmj-plant-list-add-button {
+	background-color:#31b572;
+	color:#ffffff;
+	font-weight:600;
+	border:2px solid #31b572;
+	padding:5px 10px;
+	border-radius:10px;
+	cursor: pointer;
+	transition:400ms;
+}
+.lmj-plant-list-add-button:hover {
+	background-color:#ffffff;
+	color:#31b572;
+}
+
+
+@media screen and (max-width:767px) {
+	.lmj-main-content {
+		width:100%;
+	}
+
+	.lmj-plant-list {
+		justify-content: center;
+	}
+
+}
+
+@media screen and (min-width:1024px) {
+	.lmj-plant-list > div {
+		width:50%;
+	}
+}
+
+@media screen and (min-width:1200px) {
+	.lmj-plant-list > div {
+		width:33%;
+	}
+}
+
+@media screen and (min-width:1800px) {
+	.lmj-plant-list > div {
+		width:20%;
+	}
+}

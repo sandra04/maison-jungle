@@ -1,0 +1,40 @@
+.lmj-plant-item {
+	margin: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-transform: capitalize;
+	position:relative;
+}
+
+.lmj-plant-item-cover {
+	height: 250px;
+	width: 250px;
+	border-radius: 20px;
+	object-fit: cover;
+}
+
+.lmj-plant-item-title{
+	font-weight:500;
+	margin-bottom:5px;
+}
+
+.lmj-plant-item-price{
+	margin-top:0;
+	margin-bottom:5px;
+}
+
+.lmj-plant-item-scales{
+	text-align:center;
+}
+
+.lmj-sales {
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	font-weight: 500;
+	color: white;
+	padding: 5px 10px;
+	background-color: #31b572;
+}
