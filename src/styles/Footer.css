@@ -3,19 +3,20 @@
 	padding: 32px;
 	font-weight: 600;
 	background-color:rgba(49, 181, 114, 0.4);
+	text-align: center;
 }
 
 .lmj-footer-title {
-	text-align:center;
+	text-align: center;
 }
 
 .lmj-footer-title > h2{
-	font-size:1.4em;
+	font-size: 1.4em;
 }
 
 .lmj-footer > .lmj-footer-email{
-	width:100%;
-	text-align:center;
+	width: 100%;
+	text-align: center;
 }
 
 .lmj-footer > .lmj-footer-email > input {
@@ -38,4 +39,8 @@
 .lmj-footer > .lmj-footer-email > button:hover {
 	background-color:#ffffff;
 	color:#31b572;
+}
+
+.lmj-footer > .lmj-footer-email > .error-msg {
+	color: #B54031;
 }

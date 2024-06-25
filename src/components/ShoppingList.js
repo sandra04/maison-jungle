@@ -5,11 +5,15 @@ import { plantList } from '../datas/plantList'
 
 import PlantItem from './PlantItem'
 import Categories from './Categories'
+import PlantPrecisions from './PlantPrecisions'
+
+import { calculatePromotionPrice } from '../utils/tools'
 
 
 
 function ShoppingList({cart, updateCart}) {
 	const [selectedCategory, updateSelectedCategory] = useState("")
+	const [itemDetails, setItemDetails] = useState({})
 	
 	// Parcourt le tableau pour ajouter chaque info sélectionnée à notre return (jusqu'au return final fourni par le dernier élément du tableau)
 	const categories = plantList.reduce(
@@ -31,53 +35,97 @@ function ShoppingList({cart, updateCart}) {
 	Si elle n'existe pas, on met directement la variable "cart" à jour avec "updateCart" :
 	- on récupère le tableau précédent et on y ajoute la nouvelle plante (avec nom, prix et quantité)
 	*/
-	function addToCart(name, price){
+
+	function addToCart(name, price, percentage){
+		let promotionPrice = 0
+		if (percentage) {
+			promotionPrice = calculatePromotionPrice(price, percentage)
+		}
+	
 		const currentPlantAdded = cart.find((plant) => plant.name === name)
 
 		if (currentPlantAdded) {
 			const cartFilteredCurrentPlant = cart.filter(
 				(plant) => plant.name !== name
 			)
-			updateCart([
-				...cartFilteredCurrentPlant,
-				{name, price, amount: currentPlantAdded.amount + 1}
-			])
+			if (promotionPrice !== 0) {
+				updateCart([
+					...cartFilteredCurrentPlant,
+					{name, price: promotionPrice, amount: currentPlantAdded.amount + 1}
+				])
+			}
+			else{
+				updateCart([
+					...cartFilteredCurrentPlant,
+					{name, price, amount: currentPlantAdded.amount + 1}
+				])
+			}
 		}
 		else{
-			updateCart([
-				...cart,
-				{name, price, amount: 1}
-			])
+			if (promotionPrice !== 0) {
+				updateCart([
+					...cart,
+					{name, price: promotionPrice, amount: 1}
+				])
+			}
+			else{
+				updateCart([
+					...cart,
+					{name, price, amount: 1}
+				])
+			}
 		}
 	}
 
-
 	// Dans la liste <ul> "lmj-plant-list" je récupère les props de chaque élément de mon tableau pour les attribuer à l'item correspondant créé
 	// !!! La prop "key" d'un élément n'a de signification que dans le cadre du tableau qui l'entoure. On la définit donc lors de l'appel des composants "PlantItem" (et non dans la fonction composant)
-	
+	if (Object.keys(itemDetails).length !== 0) {
+
 		return (
 			<div className="lmj-main-content">
-				<Categories categories={categories} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory} />
-				<ul className='lmj-plant-list'>
-					{plantList.map(({ id, name, price, category, cover, light, water, isSpecialOffer }) => 
-						!selectedCategory || selectedCategory === category ? (
-							<div key={id}>
-								<PlantItem
-									name={name}
-									price={price}
-									cover={cover}
-									light={light}
-									water={water}
-									isSpecialOffer={isSpecialOffer}
-								/>
-								<button className="lmj-plant-list-add-button" onClick={() => addToCart(name, price)}>Ajouter au panier</button>
-							</div>
-						) : null
-					)}
-				</ul>
+				<PlantPrecisions
+					name={itemDetails.name}
+					price={itemDetails.price}
+					description={itemDetails.description}
+					cover={itemDetails.cover}
+					light={itemDetails.light}
+					water={itemDetails.water}
+					isSpecialOffer={itemDetails.isSpecialOffer}
+					percentage={itemDetails.percentage}
+					cart={cart}
+					updateCart={updateCart}
+					setItemDetails={setItemDetails}
+				/>
 			</div>
 		)
-	
+	}
+
+	return (
+		<div className="lmj-main-content">
+			<Categories categories={categories} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory} />
+			<ul className='lmj-plant-list'>
+				{plantList.map(({ id, name, price, description, category, cover, light, water, isSpecialOffer, percentage }) => 
+					!selectedCategory || selectedCategory === category ? (
+						<div key={id}>
+							<PlantItem
+								name={name}
+								price={price}
+								description={description}
+								cover={cover}
+								light={light}
+								water={water}
+								isSpecialOffer={isSpecialOffer}
+								percentage={percentage}
+								setItemDetails={setItemDetails}
+							/>
+							<button className="lmj-plant-list-add-button" onClick={() => addToCart(name, price, percentage)}>Ajouter au panier</button>
+						</div>
+					) : null
+				)}
+			</ul>
+		</div>
+	)
+
 }
 
 export default ShoppingList

@@ -8,21 +8,29 @@
 	position:relative;
 }
 
-.lmj-plant-item-cover {
+.lmj-plant-item-cover{
 	height: 250px;
 	width: 250px;
 	border-radius: 20px;
 	object-fit: cover;
+	cursor: pointer;
 }
 
 .lmj-plant-item-title{
 	font-weight:500;
 	margin-bottom:5px;
+	cursor: pointer;
 }
 
 .lmj-plant-item-price{
 	margin-top:0;
 	margin-bottom:5px;
+}
+
+.lmj-plant-item-usual-price{
+	color:gray;
+	text-decoration: line-through;
+	font-size:0.8em;
 }
 
 .lmj-plant-item-scales{

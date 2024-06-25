@@ -1,0 +1,77 @@
+.lmj-plant-precisions {
+	margin: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+    padding-bottom: 80px;
+}
+
+.lmj-plant-item-see-others {
+    width: 80%;
+    min-width: 300px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.lmj-plant-item-see-others:hover {
+	text-decoration: none;
+}
+
+.lmj-plant-precisions-cover {
+	height: 250px;
+	width: 250px;
+	border-radius: 20px;
+	object-fit: cover;
+}
+
+.lmj-plant-precisions-title {
+	font-weight:500;
+	margin-bottom:5px;
+}
+
+.lmj-plant-precisions-description {
+	width: 80%;
+    min-width: 300px;
+    margin-bottom: 40px;
+}
+.lmj-plant-precisions-description > h2 {
+	font-size: 1.2em;
+}
+
+.lmj-plant-precisions-price {
+	margin-top:0;
+	margin-bottom:5px;
+}
+
+.lmj-plant-precisions-usual-price {
+	color:gray;
+	text-decoration: line-through;
+	font-size:0.8em;
+}
+
+.lmj-plant-precisions-scales {
+	display: flex;
+    flex-wrap : wrap;
+}
+
+.lmj-plant-precisions-scale:first-of-type {
+    margin-right: 60px;
+}
+.lmj-plant-precisions-scale > h3 {
+    margin-bottom: 0;
+    font-size: 1em;
+}
+
+.lmj-precisions-visual {
+    position: relative;
+}
+
+.lmj-precisions-sales {
+    position: absolute;
+    right: 0;
+	top: 0;
+	font-weight: 500;
+	color: white;
+	padding: 5px 10px;
+	background-color: #31b572;
+}
