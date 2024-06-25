@@ -16,7 +16,8 @@ function App() {
 
   // Si on a un panier sauvegardé dans le local state, il s'agit de la valeur initiale du composant cart, sinon le tableau est vide
     const [cart, updateCart] = useState(savedCart ? JSON.parse(savedCart) : [])
-  
+    const [isOpen, setIsOpen] = useState(true)
+
   // On met à jour notre sauvegarde dans le local storage à chaque que le contenu du panier est modifié
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
@@ -30,8 +31,8 @@ function App() {
         <h1 className='lmj-title'>La maison jungle</h1>
       </Banner>
       <div className='lmj-layout-inner'>
-        <Cart cart={cart} updateCart={updateCart} />
-        <ShoppingList cart={cart} updateCart={updateCart} />
+        <Cart cart={cart} updateCart={updateCart} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ShoppingList cart={cart} updateCart={updateCart} setIsOpen={setIsOpen} />
       </div>
       <Footer />
     </div>

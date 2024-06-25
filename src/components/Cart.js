@@ -2,12 +2,24 @@ import { useState } from 'react'
 import '../styles/Cart.css'
 
 
-function Cart({cart, updateCart}) {
-	const [isOpen, setIsOpen] = useState(true)
+function Cart({cart, updateCart, isOpen, setIsOpen}) {
+	// const [isOpen, setIsOpen] = useState(true)
+	const [cartValidation, setCartValidation] = useState(false)
+
 	const total = cart.reduce(
 		(acc, plantType) => acc + plantType.amount * plantType.price,
 		0
 	)
+
+	function closeCart() {
+		setIsOpen(false)
+		setCartValidation(false)
+	}
+
+	function openCart() {
+		setIsOpen(true)
+		setCartValidation(false)
+	}
 
 	function handleQuantity(newQuantity, name, price) {
 		if (newQuantity > 0) {
@@ -34,12 +46,40 @@ function Cart({cart, updateCart}) {
 			])
 		}
 	}
+
+
+	function validateCart(){
+		setCartValidation(true)
+		updateCart([])
+	}
     
+	if (cartValidation) {
+		return (
+			isOpen ? (
+				<div className='lmj-cart'>
+					<button
+						className='lmj-cart-toggle-button'
+						onClick={closeCart}
+					>
+						Fermer le panier
+					</button>
+					<h2>Panier</h2>
+					<p>Merci d'avoir passé commande !</p>
+				</div>
+			)
+			: (
+				<div className='lmj-cart-closed'>
+					<button className='lmj-cart-toggle-button' onClick={openCart}>🛒 Ouvrir le Panier</button>
+				</div>
+			)
+		)
+	}
+
 	return isOpen ? (
 		<div className='lmj-cart'>
 			<button
 				className='lmj-cart-toggle-button'
-				onClick={() => setIsOpen(false)}
+				onClick={closeCart}
 			>
 				Fermer le panier
 			</button>
@@ -59,11 +99,16 @@ function Cart({cart, updateCart}) {
 			{cart.length === 0 && <p className="lmj-cart-empty-message">Votre panier est actuellement vide</p>}
 			<hr className="lmj-cart-separation"/>
 			<h3>Total : {total}€</h3>
-			{cart.length !== 0 && <button className='lmj-clear-button' onClick={() => updateCart([])}>Vider le panier</button>}
+			{cart.length !== 0 && (
+				<div>
+					<div className='lmj-clear-button-wrapper'><button className='lmj-clear-button' onClick={() => updateCart([])}>Vider le panier</button></div>
+					<button className='lmj-validate-cart-button' onClick={validateCart}>Valider la commande</button>
+				</div>
+			)}
 		</div>
 	) : (
 		<div className='lmj-cart-closed'>
-			<button className='lmj-cart-toggle-button' onClick={() => setIsOpen(true)}>Ouvrir le Panier</button>
+			<button className='lmj-cart-toggle-button' onClick={openCart}>🛒 Ouvrir le Panier</button>
 		</div>
 	)
 

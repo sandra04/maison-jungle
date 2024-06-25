@@ -1,5 +1,6 @@
 .lmj-main-content {
-	width: calc(100% - 264px);
+	/*width: calc(100% - 264px);*/
+	width: 100%;
 }
 
 .lmj-plant-list {
@@ -31,6 +32,34 @@
 	color:#31b572;
 }
 
+.lmj-added-to-cart {
+	position: fixed;
+	z-index: 8;
+	height: 150px;
+	width: 80%;
+	padding: 0 30px 30px;
+	box-sizing: border-box;
+	top: calc(50vh - 75px);
+	left: calc(50vw - 40%);
+	background-color: #31b572;
+	color: #ffffff;
+	text-align: center;
+}
+.lmj-added-to-cart > .exit {
+	text-align:right;
+	cursor: pointer;
+}
+.lmj-added-to-cart > button {
+	background-color: #ffffff;
+	border: 2px solid #ffffff;
+	color: #31b572;
+	cursor: pointer;
+}
+.lmj-added-to-cart > button:hover {
+	background-color: #31b572;
+	border: 2px solid #ffffff;
+	color: #ffffff;
+}
 
 @media screen and (max-width:767px) {
 	.lmj-main-content {

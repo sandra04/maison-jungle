@@ -11,9 +11,10 @@ import { calculatePromotionPrice } from '../utils/tools'
 
 
 
-function ShoppingList({cart, updateCart}) {
+function ShoppingList({cart, updateCart, setIsOpen}) {
 	const [selectedCategory, updateSelectedCategory] = useState("")
 	const [itemDetails, setItemDetails] = useState({})
+	const [addedToCart, setAddedToCart] = useState(false)
 	
 	// Parcourt le tableau pour ajouter chaque info sélectionnée à notre return (jusqu'au return final fourni par le dernier élément du tableau)
 	const categories = plantList.reduce(
@@ -75,6 +76,12 @@ function ShoppingList({cart, updateCart}) {
 				])
 			}
 		}
+		setAddedToCart(true)
+	}
+
+	function seeCart() {
+		setIsOpen(true)
+		setAddedToCart(false)
 	}
 
 	// Dans la liste <ul> "lmj-plant-list" je récupère les props de chaque élément de mon tableau pour les attribuer à l'item correspondant créé
@@ -96,6 +103,13 @@ function ShoppingList({cart, updateCart}) {
 					updateCart={updateCart}
 					setItemDetails={setItemDetails}
 				/>
+				{ addedToCart
+					? <div class="lmj-added-to-cart">
+						<p>Le produit a été ajouté à votre panier</p>
+						<button onClick={seeCart}>Voir mon panier</button>
+					</div>
+					: null
+				}
 			</div>
 		)
 	}
@@ -123,6 +137,14 @@ function ShoppingList({cart, updateCart}) {
 					) : null
 				)}
 			</ul>
+			{ addedToCart
+				? <div className="lmj-added-to-cart">
+					<p className="exit" onClick={() => setAddedToCart(false)}>X</p>
+					<p>Le produit a été ajouté à votre panier</p>
+					<button onClick={seeCart}>Voir mon panier</button>
+				</div>
+				: null
+			}
 		</div>
 	)
 

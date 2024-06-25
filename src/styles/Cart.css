@@ -1,19 +1,26 @@
 .lmj-cart {
 	color: white;
 	background-color: #31b572;
-	padding: 32px;
+	/* padding: 32px; */
+	padding: 32px 15%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	width: 270px;
+	/* width: 270px; */
+	box-sizing: border-box;
+	width: 100%;
+	min-height: calc(100vh - 109px);
+	position: absolute;
+	z-index: 2;
 }
 
-.lmj-cart > h2, .lmj-cart > h3 {
+/*.lmj-cart > h2, .lmj-cart > h3 {
 	text-align:center;
-}
+}*/
 
 .lmj-cart > h2 {
 	margin-top:40px;
+	text-align:center;
 }
 
 .lmj-cart > h3 {
@@ -63,6 +70,10 @@
 	border-color:#ffffff;
 }
 
+.lmj-clear-button-wrapper {
+	text-align: right;
+}
+
 .lmj-clear-button {
 	background-color:transparent;
 	color:#ffffff;
@@ -75,7 +86,27 @@
 	text-decoration:none;
 }
 
+.lmj-validate-cart-button {
+	background-color:#ffffff;
+	color:#31b572;
+	font-weight:600;
+	border:2px solid #ffffff;
+	padding:5px 10px;
+	border-radius:10px;
+	cursor: pointer;
+	transition:400ms;
+	font-size: 1em;
+	display: block;
+	margin-top:50px;
+}
+.lmj-validate-cart-button:hover {
+	background-color:#31b572;
+	color:#ffffff;
+}
+
 .lmj-cart-toggle-button {
+	position: absolute;
+	right: 20px;
 	background: none;
 	outline: none;
 	border: none;
@@ -90,9 +121,11 @@
 }
 
 .lmj-cart-closed {
-	padding: 32px;
+	position: absolute;
+	right: 20px;
+	/*padding: 32px;
 	width: 270px;
-	text-align:center;
+	text-align:center;*/
 }
 
 .lmj-cart-closed > button {
@@ -104,7 +137,8 @@
 }
 
 
-@media screen and (max-width:767px) {
+
+/* @media screen and (max-width:767px) {
 	.lmj-cart {
 		position:absolute;
 		width:calc(100% - 64px);
@@ -116,4 +150,4 @@
 		width:calc(100% - 64px);
 	}
 
-}
+}*/
