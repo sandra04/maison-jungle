@@ -123,6 +123,7 @@
 .lmj-cart-closed {
 	position: absolute;
 	right: 20px;
+	width: 150px;
 	/*padding: 32px;
 	width: 270px;
 	text-align:center;*/

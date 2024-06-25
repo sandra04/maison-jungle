@@ -6,6 +6,13 @@ function Cart({cart, updateCart, isOpen, setIsOpen}) {
 	// const [isOpen, setIsOpen] = useState(true)
 	const [cartValidation, setCartValidation] = useState(false)
 
+	if (isOpen) {
+		window.scrollTo({
+			top : 0,
+			behavior : 'smooth',
+		}) ;
+	}
+	
 	const total = cart.reduce(
 		(acc, plantType) => acc + plantType.amount * plantType.price,
 		0

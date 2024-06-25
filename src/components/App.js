@@ -32,7 +32,7 @@ function App() {
       </Banner>
       <div className='lmj-layout-inner'>
         <Cart cart={cart} updateCart={updateCart} isOpen={isOpen} setIsOpen={setIsOpen} />
-        <ShoppingList cart={cart} updateCart={updateCart} setIsOpen={setIsOpen} />
+        {isOpen ? null : <ShoppingList cart={cart} updateCart={updateCart} setIsOpen={setIsOpen} />}
       </div>
       <Footer />
     </div>
