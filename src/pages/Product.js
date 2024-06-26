@@ -12,7 +12,6 @@ import '../styles/PlantPrecisions.css'
 import { calculatePromotionPrice } from '../utils/tools'
 
 
-// function Product({ name, price, description, cover, light, water, isSpecialOffer, percentage, cart, updateCart, setItemDetails }) {
 function Product(){
     const { product: productName } = useParams()
     const { cart, updateCart} = useCart()
@@ -82,11 +81,10 @@ function Product(){
     return (
         <div>
             <Cart isOpen={isOpen} setIsOpen={setIsOpen} />
-            {/*<p className="lmj-plant-item-see-others" onClick={() => setItemDetails({})}>Voir les autres plantes</p>*/}
             {isOpen
             ? null
             : (<section className='lmj-plant-precisions'>
-                <Link className="lmj-plant-item-see-others" to={`/plante/${name}`}>Voir les autres plantes</Link>
+                <Link className="lmj-plant-item-see-others" to={`/`}>Voir les autres plantes</Link>
                 <div className="lmj-precisions-visual">{isSpecialOffer && <div className="lmj-precisions-sales">Soldes</div>}<img className='lmj-plant-precisions-cover' src={cover} alt={`${name} cover`} /></div>
                 <h1 className="lmj-plant-precisions-title">{name}</h1>
                 {percentage

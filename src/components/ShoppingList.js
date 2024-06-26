@@ -1,24 +1,20 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
 import '../styles/ShoppingList.css'
 import { plantList } from '../datas/plantList'
 import { useCart } from '../utils/hooks'
-import { CartIsOpenContext } from '../utils/context'
 
 import PlantItem from './PlantItem'
 import Categories from './Categories'
 import AddedToCart from './AddedToCart'
-// import PlantPrecisions from './PlantPrecisions'
+
 
 import { calculatePromotionPrice } from '../utils/tools'
 
 
 function ShoppingList() {
 	const { cart, updateCart} = useCart()
-	const { setIsOpen } = useContext(CartIsOpenContext)
-// function ShoppingList({cart, updateCart, setIsOpen}) {
 	const [selectedCategory, updateSelectedCategory] = useState("")
-	// const [itemDetails, setItemDetails] = useState({})
 	const [addedToCart, setAddedToCart] = useState(false)
 	
 	// Parcourt le tableau pour ajouter chaque info sélectionnée à notre return (jusqu'au return final fourni par le dernier élément du tableau)
@@ -30,18 +26,6 @@ function ShoppingList() {
 			[] // initial value (notre résultat commence par un tableau vide auquel on ajoutera les différents noms de catégorie existants	
 	)
 
-	/* On ajoute une fonction "addToCart" qui prend en paramètre le nom et le prix de la plante
-	On vérifie si la plante existe déjà dans le tableau "cart" (la liste des objets ajoutés au panier, créée dans App.js) => via la méthode "find()"
-
-	Si elle existe, on la retire du tableau avec "filter()"
-	Puis, on met la variable "cart" à jour avec "updateCart" :
-	- on récupère le nouveau tableau créé ("cart" sans la valeur correspondant à la plante actuelle
-	- on y ajoute notre plante avec nom, prix et la nouvelle quantité (on récupère la quantité précédente et on lui ajoute 1)
-
-	Si elle n'existe pas, on met directement la variable "cart" à jour avec "updateCart" :
-	- on récupère le tableau précédent et on y ajoute la nouvelle plante (avec nom, prix et quantité)
-	*/
-
 	
 	// On met à jour notre sauvegarde dans le local storage à chaque que le contenu du panier est modifié
 	useEffect(() => {
@@ -49,15 +33,22 @@ function ShoppingList() {
 	}, [cart])
 
 
-
+	
 	function addToCart(name, price, percentage){
 		let promotionPrice = 0
 		if (percentage) {
 			promotionPrice = calculatePromotionPrice(price, percentage)
 		}
-	
+		
+		// On vérifie si la plante est déjà dans le panier
 		const currentPlantAdded = cart.find((plant) => plant.name === name)
 
+		/* Si oui, on la retire du tableau "cart"
+		Puis, on met le panier à jour :
+		- on récupère le nouveau tableau créé ("cart" sans la valeur correspondant à la plante actuelle)
+		- on y ajoute notre plante avec nom, prix et la nouvelle quantité (quantité précédente + 1)
+		S'il y a une promo, on l'applique
+		*/
 		if (currentPlantAdded) {
 			const cartFilteredCurrentPlant = cart.filter(
 				(plant) => plant.name !== name
@@ -75,6 +66,9 @@ function ShoppingList() {
 				])
 			}
 		}
+		/* 	Si non, on ajoute simplement le produit à notre panier :on récupère le tableau précédent et on y ajoute la nouvelle plante (avec nom, prix et quantité)
+		S'il y a une promo, on l'applique également
+		*/
 		else{
 			if (promotionPrice !== 0) {
 				updateCart([
@@ -91,45 +85,6 @@ function ShoppingList() {
 		}
 		setAddedToCart(true)
 	}
-
-	/* function seeCart() {
-		setIsOpen(true)
-		setAddedToCart(false)
-	} */
-
-
-
-	/* if (Object.keys(itemDetails).length !== 0) {
-
-		return (
-			<div className="lmj-main-content">
-				<PlantPrecisions
-					name={itemDetails.name}
-					price={itemDetails.price}
-					description={itemDetails.description}
-					cover={itemDetails.cover}
-					light={itemDetails.light}
-					water={itemDetails.water}
-					isSpecialOffer={itemDetails.isSpecialOffer}
-					percentage={itemDetails.percentage}
-					cart={cart}
-					updateCart={updateCart}
-					setItemDetails={setItemDetails}
-				/>
-				{ addedToCart
-					? <div class="lmj-added-to-cart">
-						<p>Le produit a été ajouté à votre panier</p>
-						<button onClick={seeCart}>Voir mon panier</button>
-					</div>
-					: null
-				}
-			</div>
-		)
-	} */
-
-
-	// Dans la liste <ul> "lmj-plant-list" je récupère les props de chaque élément de mon tableau pour les attribuer à l'item correspondant créé
-	// !!! La prop "key" d'un élément n'a de signification que dans le cadre du tableau qui l'entoure. On la définit donc lors de l'appel des composants "PlantItem" (et non dans la fonction composant)
 
 	return (
 		<div className="lmj-main-content">
@@ -154,40 +109,6 @@ function ShoppingList() {
 			{addedToCart ? <AddedToCart setAddedToCart={setAddedToCart}/> : null}
 		</div>
 	)
-
-	/* return (
-		<div className="lmj-main-content">
-			<Categories categories={categories} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory} />
-			<ul className='lmj-plant-list'>
-				{plantList.map(({ id, name, price, description, category, cover, light, water, isSpecialOffer, percentage }) => 
-					!selectedCategory || selectedCategory === category ? (
-						<div key={id}>
-							<PlantItem
-								name={name}
-								price={price}
-								description={description}
-								cover={cover}
-								light={light}
-								water={water}
-								isSpecialOffer={isSpecialOffer}
-								percentage={percentage}
-								setItemDetails={setItemDetails}
-							/>
-							<button className="lmj-plant-list-add-button" onClick={() => addToCart(name, price, percentage)}>Ajouter au panier</button>
-						</div>
-					) : null
-				)}
-			</ul>
-			{ addedToCart
-				? <div className="lmj-added-to-cart">
-					<p className="exit" onClick={() => setAddedToCart(false)}>X</p>
-					<p>Le produit a été ajouté à votre panier</p>
-					<button onClick={seeCart}>Voir mon panier</button>
-				</div>
-				: null
-			}
-		</div>
-	) */
 
 }
 

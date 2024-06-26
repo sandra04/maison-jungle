@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import './styles/index.css';
 
 import Banner from './components/Banner';
-import App from './components/App';
 import Footer from './components/Footer';
 import Error from './components/Error'
 
@@ -14,7 +13,6 @@ import Home from './pages/Home';
 import Product from './pages/Product'
 
 
-// On importe les providers de nos contextes
 import { CartProvider, CartIsOpenProvider } from './utils/context';
 
 
