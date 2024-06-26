@@ -31,6 +31,12 @@
 	background-color:#ffffff;
 	color:#31b572;
 }
+.lmj-plant-list-add-button:disabled, .lmj-plant-list-add-button[disabled] {
+	background-color: #d3d3d3;
+	border: 2px solid #ffffff;
+	color: #828282;
+	cursor: default;
+}
 
 .lmj-added-to-cart {
 	position: fixed;
@@ -60,6 +66,7 @@
 	border: 2px solid #ffffff;
 	color: #ffffff;
 }
+
 
 @media screen and (max-width:767px) {
 	.lmj-main-content {

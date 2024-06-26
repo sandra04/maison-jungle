@@ -104,6 +104,10 @@
 	color:#ffffff;
 }
 
+.lmj-cart-validation {
+	text-align: center;
+}
+
 .lmj-cart-toggle-button {
 	position: absolute;
 	right: 20px;
@@ -132,6 +136,7 @@
 .lmj-cart-closed > button {
 	color: black;
 	text-decoration:underline;
+	margin-top:15px;
 }
 .lmj-cart-closed > button:hover {
 	text-decoration:none;

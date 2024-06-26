@@ -1,11 +1,12 @@
 .lmj-plant-item {
-	margin: 10px;
+	margin: 10px auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	text-transform: capitalize;
 	position:relative;
+	width: 250px;
 }
 
 .lmj-plant-item-cover{
@@ -45,7 +46,7 @@
 
 .lmj-sales {
 	position: absolute;
-	right: 15px;
+	right: 0;
 	top: 15px;
 	font-weight: 500;
 	color: white;

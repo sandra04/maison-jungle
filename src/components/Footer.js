@@ -12,14 +12,18 @@ function Footer() {
 
     // Vérifie la valeur lorsqu'on sort de l'input
 	function checkEmail() {
-		if (!inputValue.includes('@')) {
+		if (!inputValue.includes('@') || inputValue[inputValue.length - 1] === "@" || inputValue[0] === "@") {
 			setNewsletterMessage("Merci d'entrer une adresse email valide")
+			return "error"
 		}
+		else return "ok"
 	}
 
 	function sendEmail() {
-		checkEmail()
-		setNewsletterMessage('Merci pour votre inscription à notre newsletter !')
+		let result = checkEmail()
+		if (result === "ok"){
+			setNewsletterMessage('Merci pour votre inscription à notre newsletter !')
+		}
 	}
 
 	if (newsletterMessage === 'Merci pour votre inscription à notre newsletter !') {

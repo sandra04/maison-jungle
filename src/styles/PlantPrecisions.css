@@ -12,6 +12,7 @@
     min-width: 300px;
     text-decoration: underline;
     cursor: pointer;
+	margin-top: 15px;
 }
 .lmj-plant-item-see-others:hover {
 	text-decoration: none;
@@ -64,12 +65,13 @@
 
 .lmj-precisions-visual {
     position: relative;
+	margin-top: 50px;
 }
 
 .lmj-precisions-sales {
     position: absolute;
     right: 0;
-	top: 0;
+	top: 15px;
 	font-weight: 500;
 	color: white;
 	padding: 5px 10px;

@@ -3,7 +3,7 @@ import Water from '../assets/water.svg'
 
 
 // Prend en compte les infos "scaleValue" et "careType" du composant cliqué (fonction exécutée au clic sur le composant)
-function careMessage(careScale, careType){
+/*  function careMessage(careScale, careType){
 
 	const scale = careScale === 1 ? (
 		"peu"
@@ -23,7 +23,7 @@ function careMessage(careScale, careType){
 	)
 	
 	alert(`Cette plante requiert ${scale} ${type}`)
-}
+}*/
 
 
 // Récupère les valeurs "scaleValue" et "careType" lors de l'appel du composant dans "PlantItem" et indique quoi afficher en fonction des valeurs récupérées
@@ -37,8 +37,8 @@ function CareScale({ scaleValue, careType }) {
         )
 
 	return (
-		<div onClick={() => careMessage(scaleValue, careType)}
-		>
+		<div>
+			{/*<div onClick={() => careMessage(scaleValue, careType)}>*/}
 			{range.map((rangeElem) =>
 				scaleValue >= rangeElem ? (
 					<span key={rangeElem.toString()}>{scaleType}</span>
@@ -47,23 +47,5 @@ function CareScale({ scaleValue, careType }) {
 		</div>
 	)
 }
-
-/* Autre possibilité à la place de la fonction "careMessage":
-
-// Constante hors de la fonction CareScale
-const quantityLabel = {
-	1: 'peu',
-	2: 'modérément',
-	3: 'beaucoup'
-}
-
-// Lors du return de la fonction CareScale
-<div onClick={() =>
-	alert(
-		`Cette plante requiert ${quantityLabel[scaleValue]} ${
-			careType === 'light' ? 'de lumière' : "d'arrosage"
-		}`
-	)
-}> */
 
 export default CareScale

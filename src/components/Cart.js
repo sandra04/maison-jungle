@@ -81,7 +81,7 @@ function Cart() {
 						Fermer le panier
 					</button>
 					<h2>Panier</h2>
-					<p>Merci d'avoir passé commande !</p>
+					<p className='lmj-cart-validation'>Merci d'avoir passé commande !</p>
 				</div>
 			)
 			: (
