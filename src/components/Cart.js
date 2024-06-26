@@ -18,6 +18,11 @@ function Cart({cart, updateCart, isOpen, setIsOpen}) {
 		0
 	)
 
+	const itemsInCart = cart.reduce(
+		(acc, item) => acc + parseInt(item.amount),
+		0
+	)
+
 	function closeCart() {
 		setIsOpen(false)
 		setCartValidation(false)
@@ -76,7 +81,7 @@ function Cart({cart, updateCart, isOpen, setIsOpen}) {
 			)
 			: (
 				<div className='lmj-cart-closed'>
-					<button className='lmj-cart-toggle-button' onClick={openCart}>🛒 Ouvrir le Panier</button>
+					<button className='lmj-cart-toggle-button' onClick={openCart}>🛒 Ouvrir le Panier ({ itemsInCart } article(s))</button>
 				</div>
 			)
 		)
@@ -115,7 +120,7 @@ function Cart({cart, updateCart, isOpen, setIsOpen}) {
 		</div>
 	) : (
 		<div className='lmj-cart-closed'>
-			<button className='lmj-cart-toggle-button' onClick={openCart}>🛒 Ouvrir le Panier</button>
+			<button className='lmj-cart-toggle-button' onClick={openCart}>🛒 Ouvrir le Panier ({ itemsInCart } article(s))</button>
 		</div>
 	)
 
