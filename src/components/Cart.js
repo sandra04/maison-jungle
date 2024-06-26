@@ -1,8 +1,14 @@
+import { useContext } from 'react'
+
 import { useState } from 'react'
 import '../styles/Cart.css'
+import { useCart } from '../utils/hooks'
+import { CartIsOpenContext } from '../utils/context'
 
-
-function Cart({cart, updateCart, isOpen, setIsOpen}) {
+// function Cart({cart, updateCart, isOpen, setIsOpen}) {
+function Cart() {
+	const { cart, updateCart} = useCart()
+	const { isOpen, setIsOpen } = useContext(CartIsOpenContext)
 	// const [isOpen, setIsOpen] = useState(true)
 	const [cartValidation, setCartValidation] = useState(false)
 

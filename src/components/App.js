@@ -5,6 +5,8 @@ import Cart from './Cart'
 import ShoppingList from './ShoppingList'
 import Footer from './Footer'
 
+
+
 import logo from '../assets/logo.png'
 import '../styles/Layout.css'
 

@@ -1,13 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
-import App from './components/App';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
+import './styles/index.css';
+
+import Banner from './components/Banner';
+import App from './components/App';
+import Footer from './components/Footer';
+import Error from './components/Error'
+
+import Home from './pages/Home';
+import Product from './pages/Product'
+
+
+// On importe les providers de nos contextes
+import { CartProvider, CartIsOpenProvider } from './utils/context';
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <CartProvider>
+        <CartIsOpenProvider>
+          <Banner/>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/plante/:product" element={<Product/>} />
+            <Route path="*" element={<Error/>} />
+          </Routes>
+          <Footer/>
+        </CartIsOpenProvider>
+      </CartProvider>
+    </Router>
   </React.StrictMode>
 );
 

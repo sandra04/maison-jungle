@@ -21,6 +21,12 @@
 	margin-bottom:5px;
 	cursor: pointer;
 }
+.lmj-plant-item > a {
+	color: #000000;
+}
+.lmj-plant-item > a:hover {
+	text-decoration: none;
+}
 
 .lmj-plant-item-price{
 	margin-top:0;
